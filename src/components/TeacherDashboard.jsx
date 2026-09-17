@@ -389,7 +389,7 @@ export default function TeacherDashboard({ socket, onLogout }) {
 
         <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
           <div className="modal-content" style={{ maxWidth: '380px', width: '90%', margin: 'auto' }}>
-            <h2 style={{ fontSize: '1.15rem', fontWeight: '700' }}>🔐 XÁC THỰC GIÁO VIÊN</h2>
+            <h2 style={{ fontSize: '1.15rem', fontWeight: '700' }}>XÁC THỰC GIÁO VIÊN</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
               Vui lòng nhập mã PIN quản trị viên để mở bảng điều khiển lớp học.
             </p>
@@ -435,7 +435,7 @@ export default function TeacherDashboard({ socket, onLogout }) {
             className={`btn ${isLaserEnabled ? 'btn-danger' : 'btn-secondary'}`}
             onClick={() => setIsLaserEnabled(!isLaserEnabled)}
           >
-            {isLaserEnabled ? '🔴 Đang bật Laser chỉ điểm' : '🔴 Bật Laser chỉ điểm'}
+            {isLaserEnabled ? 'Laser chỉ điểm: BẬT' : 'Laser chỉ điểm: TẮT'}
           </button>
           {sharingStudent && (
             <button className="btn btn-secondary" onClick={() => handleTakeDownStudent(sharingStudent.id)}>
@@ -517,7 +517,7 @@ export default function TeacherDashboard({ socket, onLogout }) {
                   {queue.length >= 2 && (
                     <div style={{ marginBottom: '8px', textAlign: 'center' }}>
                       <button className="btn btn-primary btn-sm" style={{ width: '100%' }} onClick={handleApproveDualStream}>
-                        ⚡ So sánh song song 2 bài đầu tiên
+                        So sánh song song 2 bài đầu tiên
                       </button>
                     </div>
                   )}

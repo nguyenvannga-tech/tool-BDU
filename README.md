@@ -1,10 +1,10 @@
 # LanCast Pro — Hệ Thống Trình Chiếu & Quản Lý Lớp Học Mạng LAN
 
-Giải pháp trình chiếu màn hình, tương tác Camera/Micro thời gian thực và quản lý lớp học trong mạng nội bộ (LAN / Wi-Fi). Hoạt động **100% Offline**, **không phụ thuộc Internet/Cloud**, độ trễ **< 50ms**, truyền phát mượt mà chuẩn **60 FPS**.
+Giải pháp trình chiếu màn hình, tương tác Camera/Micro thời gian thực và quản lý lớp học trong mạng nội bộ (LAN / Wi-Fi). Hoạt động **100% Offline**, **không phụ thuộc Internet/Cloud**, độ trễ **< 50ms**, truyền phát chuẩn **60 FPS**.
 
 ---
 
-## 🎯 Đối Tượng Sử Dụng
+## 1. Đối Tượng Sử Dụng
 
 - **Giáo viên / Giảng viên**: Trình chiếu bài giảng, slide, code lập trình, chỉ điểm Laser và gọi học sinh phát biểu / chiếu bài tập trực tiếp.
 - **Học sinh / Sinh viên**: Xem bài giảng toàn màn hình trên máy tính hoặc điện thoại, giơ tay xin chiếu bài, bật camera nộp bài tập viết tay tức thì.
@@ -12,7 +12,7 @@ Giải pháp trình chiếu màn hình, tương tác Camera/Micro thời gian th
 
 ---
 
-## 🔄 Sơ Đồ Luồng Hoạt Động (Architecture & Workflow)
+## 2. Sơ Đồ Kiến Trúc & Luồng Hoạt Động
 
 ```text
 +-----------------------------------------------------------------------------------+
@@ -39,38 +39,39 @@ Giải pháp trình chiếu màn hình, tương tác Camera/Micro thời gian th
                     |                                          ^
                     |==== Luồng Video/Audio P2P Direct WebRTC ===| (Độ trễ < 50ms)
                     |                                          |
-                    |<=== Camera/Screen Học sinh nộp bài tập ===| (Chuẩn OmeTV 0.0s)
+                    |<=== Camera/Screen Học sinh phát biểu =====| (Tức thì thời gian thực)
 ```
 
 ---
 
-## ⚡ Cơ Chế Vận Hành Cốt Lõi
+## 3. Cơ Chế Vận Hành Cốt Lõi
 
 1. **Khởi tạo & Định danh mDNS**: Máy chủ tự động phát sóng tên miền nội bộ `lophoc.local`. Thiết bị trong mạng Wi-Fi truy cập trực tiếp không cần nhập IP.
 2. **Xác thực Giáo viên**: Giáo viên đăng nhập qua cổng `/teacher` với mã PIN bảo mật `123456` để nắm quyền chủ phòng.
 3. **Truyền phát WebRTC P2P (Broadcasting)**: Khi Giáo viên phát màn hình, luồng video 60 FPS được phân phối trực tiếp tới từng học sinh qua mạng ngang hàng P2P cục bộ, không nghẽn băng thông.
-4. **Tương tác Tức thì (Chuẩn OmeTV 0.0s)**: Khi Giáo viên mời học sinh phát biểu, Camera & Micro của học sinh tự động kích hoạt truyền ngược về bảng điều khiển Giáo viên mà không cần hộp thoại trung gian.
+4. **Tương tác Tức thì (Realtime Stream)**: Khi Giáo viên mời học sinh phát biểu, Camera & Micro của học sinh tự động kích hoạt truyền ngược về bảng điều khiển Giáo viên mà không cần hộp thoại trung gian.
 
 ---
 
-## 🚀 Hướng Dẫn Khởi Chạy (1-Click Run)
+## 4. Hướng Dẫn Khởi Chạy (1-Click Run)
 
-### 🪟 Trên Windows:
+### Trên Windows:
 Nhấp đúp chuột vào file:
 ```cmd
 start.bat
 ```
 
-### 🍎 Trên macOS / Linux:
+### Trên macOS / Linux:
 Mở Terminal và chạy lệnh:
 ```bash
 chmod +x start.sh && ./start.sh
 ```
+
 *(Hệ thống tự động kiểm tra thư viện, biên dịch giao diện và mở trình duyệt).*
 
 ---
 
-## 🌐 Cổng Truy Cập Hệ Thống
+## 5. Cổng Truy Cập Hệ Thống
 
 | Vai Trò | Địa Chỉ Truy Cập | Ghi Chú |
 | :--- | :--- | :--- |
@@ -81,7 +82,7 @@ chmod +x start.sh && ./start.sh
 
 ---
 
-## 🛠️ Công Nghệ Nền Tảng
+## 6. Công Nghệ Nền Tảng
 
 - **Giao diện**: React 18, Vite, Responsive Mobile Layout, PWA Standalone App.
 - **Truyền dẫn Realtime**: WebSockets (Socket.IO), WebRTC Direct Mesh (VP8 / H.264 / Opus Audio).

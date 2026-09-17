@@ -325,10 +325,10 @@ export default function StudentView({ socket }) {
           ) : (
             <>
               <button className="btn btn-primary" onClick={() => startInstantStream(currentTeacherId, false)}>
-                📷 Bật Camera phát biểu
+                Bật Camera phát biểu
               </button>
               <button className="btn btn-secondary" onClick={() => startInstantStream(currentTeacherId, true)}>
-                🖥️ Chiếu Màn hình
+                Chiếu Màn hình
               </button>
             </>
           )}
