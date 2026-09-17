@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giao Diện Học Sinh - Lớp Học LAN</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="logo-group">
+      <span class="logo-icon">🎓</span>
+      <div>
+        <h1>GIAO DIỆN HỌC SINH</h1>
+        <div class="subtitle">Thành viên: <b id="displayName">Chưa đăng nhập</b></div>
+      </div>
+    </div>
+    <div>
+      <span id="teacherStatusBadge" class="badge badge-offline">
+        <span class="status-dot"></span> Giáo viên vắng mặt
+      </span>
+    </div>
+  </header>
+
+  <main>
+    <div class="login-box" id="loginContainer">
+      <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Tham Gia Lớp Học</h2>
+      <div class="form-group">
+        <label for="studentNameInput">Tên hoặc Mã số Học sinh:</label>
+        <input type="text" id="studentNameInput" placeholder="Ví dụ: Nguyễn Văn A - Tổ 1" autofocus>
+      </div>
+      <button class="btn btn-primary" id="btnJoinClass" style="width: 100%; justify-content: center; padding: 12px;">
+        🚀 Vào Lớp Học
+      </button>
+    </div>
+
+    <div class="dashboard-grid dashboard-grid-student" id="studentDashboard" style="display: none;">
+      <!-- Khung Video màn hình xem được -->
+      <section class="video-stage">
+        <div class="video-header">
+          <h3 id="activeStreamTitle">Chưa có hoạt động chia sẻ màn hình</h3>
+          <div class="video-controls-header">
+            <button class="btn btn-primary btn-sm" id="btnFullscreen">🔍 Phóng Toàn Màn Hình</button>
+            <button class="btn btn-danger btn-sm" id="btnStopShareStudent" style="display: none;">🛑 Dừng chia sẻ màn hình</button>
+          </div>
+        </div>
+
+        <div class="video-container" id="videoContainer" title="Click đúp hoặc bấm nút góc để Phóng to">
+          <div class="video-placeholder" id="videoPlaceholder">
+            <span class="placeholder-icon">💻</span>
+            <p>Khi Thầy/Cô phát bài giảng hoặc yêu cầu bạn chia sẻ màn hình,<br>nội dung trình chiếu sẽ xuất hiện tại đây.</p>
+          </div>
+          <video id="studentVideo" autoplay playsinline style="display: none;"></video>
+
+          <!-- Nút Phóng Toán Màn Hình Nổi trên Khung Video -->
+          <div class="video-overlay-controls" id="overlayControls" style="display: none;">
+            <button class="btn-overlay" id="btnOverlayFullscreen">⛶ Phóng to xem rõ</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Khung Bình Luận Realtime -->
+      <section class="chat-section">
+        <div class="section-title">
+          <span>💬 Bình luận & Trao đổi lớp học</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-bubble" style="background:#f8fafc; text-align:center; color:#94a3b8;">
+            Chưa có bình luận nào...
+          </div>
+        </div>
+        <div class="chat-input-group">
+          <input type="text" class="chat-input" id="chatInput" placeholder="Nhập câu hỏi hoặc bình luận...">
+          <button class="btn btn-primary btn-sm" id="btnSendChat">Gửi</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="shareModal">
+    <div class="modal-box">
+      <div class="modal-icon">📢</div>
+      <h3>Yêu Cầu Chia Sẻ Màn Hình</h3>
+      <p style="color: var(--text-secondary);">Thầy/Cô đang gửi yêu cầu bạn chia sẻ màn hình máy tính lên màn hình chung của lớp. Bạn có đồng ý không?</p>
+      <div class="modal-actions">
+        <button class="btn btn-success" id="btnAcceptShare" style="padding: 10px 24px;">✅ Đồng ý chia sẻ</button>
+        <button class="btn btn-danger" id="btnDeclineShare" style="padding: 10px 24px;">❌ Từ chối</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/student.js"></script>
+</body>
+</html>

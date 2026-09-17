@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Điều Khiển Giáo Viên - Lớp Học LAN</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="logo-group">
+      <span class="logo-icon">👨‍🏫</span>
+      <div>
+        <h1>BẢNG ĐIỀU KHIỂN GIÁO VIÊN</h1>
+        <div class="subtitle">Quản lý lớp học & phát trình chiếu trực tiếp</div>
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <button class="btn btn-primary" id="btnBroadcast">📡 Phát màn hình Giáo viên</button>
+      <a href="/" class="btn btn-secondary">Thoát</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="dashboard-grid">
+      <!-- Cột 1: Danh sách Học sinh -->
+      <aside class="sidebar">
+        <div class="section-title">
+          <span>👥 Học sinh Online (<span id="studentCount">0</span>)</span>
+        </div>
+        <ul class="student-list" id="studentList">
+          <li class="student-item" style="justify-content:center; color:#94a3b8;">
+            Đang tải danh sách...
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Cột 2: Khung hiển thị Video Stream -->
+      <section class="video-stage">
+        <div class="video-header">
+          <h3 id="activeStreamTitle">Chưa có màn hình được phát</h3>
+          <div class="video-controls-header">
+            <button class="btn btn-primary btn-sm" id="btnFullscreen">🔍 Phóng Toàn Màn Hình</button>
+            <button class="btn btn-danger btn-sm" id="btnStopStream" style="display: none;">🛑 Dừng trình chiếu</button>
+          </div>
+        </div>
+
+        <div id="mirrorNotice" style="display: none; background: #fffbeb; border: 1px solid #fef3c7; color: #b45309; padding: 8px 12px; border-radius: 8px; font-size: 0.8rem;">
+          💡 <b>Màn hình của bạn đang phát cho cả lớp!</b> Hãy chuyển sang PowerPoint, PDF, Word... (Alt+Tab / Cmd+Tab) để giảng dạy.
+        </div>
+
+        <div class="video-container" id="videoContainer" title="Click đúp hoặc bấm nút góc để Phóng to">
+          <div class="video-placeholder" id="videoPlaceholder">
+            <span class="placeholder-icon">🖥️</span>
+            <p>Vui lòng chọn <b>"📢 Mời chia sẻ"</b> bên danh sách học sinh<br>hoặc bấm <b>"📡 Phát màn hình Giáo viên"</b> để trình chiếu.</p>
+          </div>
+          <video id="remoteVideo" autoplay playsinline style="display: none;"></video>
+
+          <!-- Nút Phóng Toán Màn Hình Nổi trên Khung Video -->
+          <div class="video-overlay-controls" id="overlayControls" style="display: none;">
+            <button class="btn-overlay" id="btnOverlayFullscreen">⛶ Phóng to xem rõ</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cột 3: Khung Bình Luận Realtime -->
+      <section class="chat-section">
+        <div class="section-title">
+          <span>💬 Bình luận & Trao đổi lớp học</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-bubble" style="background:#f8fafc; text-align:center; color:#94a3b8;">
+            Chưa có bình luận nào...
+          </div>
+        </div>
+        <div class="chat-input-group">
+          <input type="text" class="chat-input" id="chatInput" placeholder="Nhập câu hỏi hoặc bình luận...">
+          <button class="btn btn-primary btn-sm" id="btnSendChat">Gửi</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/teacher.js"></script>
+</body>
+</html>
